@@ -6,7 +6,10 @@ export default class SearchBar extends Component {
 	render() {
 		return (
 			<form className="input-group">
-				<input />
+				<input className="input-group-button" />
+				<span>
+					<button className="btn btn-secondary" type="submit">Submit</button>
+				</span>
 			</form>
 		)
 	}
