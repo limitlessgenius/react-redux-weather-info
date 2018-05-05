@@ -2,7 +2,10 @@
 
 import React, { Component } from 'react'
 
-export default class SearchBar extends Component {
+import { connect } from 'react-redux'
+import * as actions from '../actions'
+
+class SearchBar extends Component {
 
 	constructor(props) {
 		super(props)
@@ -19,8 +22,9 @@ export default class SearchBar extends Component {
 
 	onFormSubmit = (e) => {
 		e.preventDefault()
+		this.props.fetchWeather()
 	}
-	
+
 	render() {
 		return (
 			<form className="input-group" onSubmit={this.onFormSubmit}>
@@ -37,4 +41,8 @@ export default class SearchBar extends Component {
 		)
 	}
 }
+
+
+
+export default connect(null, actions)(SearchBar)
 
