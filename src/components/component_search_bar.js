@@ -26,6 +26,9 @@ class SearchBar extends Component {
 	}
 
 	render() {
+
+		console.log('T', this.props.temperature)
+
 		return (
 			<form className="input-group" onSubmit={this.onFormSubmit}>
 				<input 
@@ -43,6 +46,12 @@ class SearchBar extends Component {
 }
 
 
+const mapStateToProps = (state) => {
 
-export default connect(null, actions)(SearchBar)
+	const { temperature } = state
+
+	return { temperature }
+}
+
+export default connect(mapStateToProps, actions)(SearchBar)
 

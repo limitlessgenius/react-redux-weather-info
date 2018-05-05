@@ -1,18 +1,24 @@
 
 
-import keys from '../config/keys'
 import { FETCH_WEATHER } from './types'
+import { WEATHER_API_KEY } from '../config/keys'
+// WHY REQUIRED IMPORT AS {} IF NOT DECONSTRUCT { WEATHER_API_KEY }
+import axios from 'axios'
+
+const ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast?q=Barcelona,es&appid=${WEATHER_API_KEY}`
 
 export const fetchWeather = () => {
 	return dispatch => {
-		dispatch({
-			type: FETCH_WEATHER, 
-			payload: 'WEATHER_DATA'
-		})
+		axios
+			.get(ROOT_URL)
+			.then(res => {
+				dispatch({
+					type: FETCH_WEATHER, 
+					payload: res.data.list[0].main.temp
+				})
+			})
 	}
 }
-
-
 
 
 //console.log('MIDDLEWARE', reduxThunk)
