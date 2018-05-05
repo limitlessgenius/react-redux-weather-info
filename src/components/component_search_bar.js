@@ -1,12 +1,8 @@
-
-
 import React, { Component } from 'react'
-
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
 class SearchBar extends Component {
-
 	constructor(props) {
 		super(props)
 
@@ -16,19 +12,15 @@ class SearchBar extends Component {
 	}
 
 	onInputChange = (e) => { 
-		this.setState({ term: e.target.value }) 
-		//WHY ERROR IF I DON'T BIND TO THIS
+		this.setState({ term: e.target.value }) //WHY ERROR IF I DON'T BIND TO THIS
 	}
 
 	onFormSubmit = (e) => {
 		e.preventDefault()
-		this.props.fetchWeather()
+		this.props.fetchWeather(this.state.term)
 	}
 
 	render() {
-
-		console.log('T', this.props.temperature)
-
 		return (
 			<form className="input-group" onSubmit={this.onFormSubmit}>
 				<input 
@@ -45,11 +37,8 @@ class SearchBar extends Component {
 	}
 }
 
-
 const mapStateToProps = (state) => {
-
 	const { temperature } = state
-
 	return { temperature }
 }
 
